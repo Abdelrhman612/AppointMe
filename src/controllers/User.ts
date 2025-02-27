@@ -34,7 +34,7 @@ export const getUser = async (req: Request, res: Response) => {
 
 export const createUser = async (req: Request, res: Response) => {
   try {
-    const { name, email } = req.body;
+    const { name, email, password } = req.body;
 
     if (!name || !email) {
       res
@@ -44,7 +44,7 @@ export const createUser = async (req: Request, res: Response) => {
     }
 
     const newUser = await prisma.user.create({
-      data: { name, email },
+      data: { name, email, password },
     });
 
     res.status(201).json({ success: true, data: newUser });

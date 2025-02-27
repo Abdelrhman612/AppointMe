@@ -17,6 +17,7 @@ model user {
   id           String         @id @default(uuid())
   name         String
   email        String
+  password     String
   appointmints Appointmints[]
 }
 
