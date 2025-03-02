@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, user } from "@prisma/client";
 import bcrypt from "bcrypt";
 import { GenerateJwt } from "../utills/GenerateJwt";
 const prisma = new PrismaClient();

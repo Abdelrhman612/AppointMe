@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
-
+import { User } from "../UserInterface/UserSchema";
 const prisma = new PrismaClient();
 export const getUsers = async (req: Request, res: Response) => {
-  const users = await prisma.user.findMany({
+  const users: User[] = await prisma.user.findMany({
     select: {
       FirstName: true,
       LastName: true,
@@ -16,7 +16,7 @@ export const getUsers = async (req: Request, res: Response) => {
 export const updateUser = async (req: Request, res: Response) => {
   const { Id } = req.params;
   const { FirstName, LastName, email } = req.body;
-  const upUser = await prisma.user.update({
+  const upUser: User = await prisma.user.update({
     where: { id: Id },
     data: { FirstName, LastName, email },
     include: { appointmints: true },
