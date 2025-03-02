@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
-
+import { Appointmints } from "../UserInterface/UserSchema";
 const prisma = new PrismaClient();
 
 export const getAppointments = async (req: Request, res: Response) => {
-  const appointments = await prisma.appointmints.findMany();
+  const appointments: Appointmints[] = await prisma.appointmints.findMany();
   res.json({ success: true, data: appointments });
 };
 
@@ -20,7 +20,7 @@ export const getAppointment = async (req: Request, res: Response) => {
 };
 export const createAppointment = async (req: Request, res: Response) => {
   const { date, userId, service } = req.body;
-  const newAppointment = await prisma.appointmints.create({
+  const newAppointment: Appointmints = await prisma.appointmints.create({
     data: { date, userId, service },
   });
   if (!date || !service) {
@@ -35,7 +35,7 @@ export const createAppointment = async (req: Request, res: Response) => {
 export const updateAppointment = async (req: Request, res: Response) => {
   const { id } = req.params;
   const { date, service, status } = req.body;
-  const updatedAppointment = await prisma.appointmints.update({
+  const updatedAppointment: Appointmints = await prisma.appointmints.update({
     where: { id },
     data: { date, service, status },
   });
