@@ -1,17 +1,10 @@
 import express from "express";
-import {
-  getAppointments,
-  getAppointment,
-  createAppointment,
-  updateAppointment,
-  deleteAppointment,
-} from "../controllers/Appointmints";
-
+import * as Appoint from "../controllers/Appointmints";
 const router = express.Router();
-router.get("/", getAppointments);
-router.post("/", createAppointment);
-router.get("/:id", getAppointment);
-router.patch("/:id", updateAppointment);
-router.delete("/:id", deleteAppointment);
+router.get("/", Appoint.getAppointments);
+router.post("/", Appoint.createAppointment);
+router.get("/:id", Appoint.getAppointment);
+router.patch("/:id", Appoint.updateAppointment);
+router.delete("/:id", Appoint.deleteAppointment);
 
 export const AppointmintsRouter = router;
